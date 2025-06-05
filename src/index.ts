@@ -5,8 +5,6 @@
  */
 
 // 核心虚拟滚动组件
-export { VirtualList } from './components/VirtualList.js'
-export { VirtualGrid } from './components/VirtualGrid.js'
 
 // 工具函数
 export {

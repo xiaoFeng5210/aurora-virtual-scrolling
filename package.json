@@ -1,6 +1,6 @@
 {
   "name": "aurora-virtual-scrolling",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "高性能虚拟滚动库 - 支持大数据量列表渲染优化",
   "type": "module",
   "main": "./dist/index.cjs",
