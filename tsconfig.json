@@ -21,7 +21,23 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "package/*"
+      ],
+      "@/shared/*": [
+        "package/shared/*"
+      ],
+      "@/react-virtual-scrolling/*": [
+        "package/react-virtual-scrolling/*"
+      ],
+      "@/vue-virtual-scrolling/*": [
+        "package/vue-virtual-scrolling/*"
+      ]
+    }
   },
   "include": [
     "package/**/*"

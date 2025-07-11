@@ -1,35 +1,19 @@
-/**
- * Aurora Virtual Scrolling - 高性能虚拟滚动库
- * 
- * 支持大数据量列表渲染优化，提供流畅的滚动体验
- */
+// 主入口文件 - 导出共享类型和工具函数
 
-// 核心虚拟滚动组件
-
-// 工具函数
-export {
-  calculateVisibleRange,
-  getItemSize,
-  debounce,
-  throttle
-} from './utils/index.js'
-
-// 类型定义
+// 导出共享类型
 export type {
-  VirtualListProps,
-  VirtualGridProps,
+  VirtualScrollItem,
   VirtualScrollOptions,
-  ItemRenderer,
-  ScrollDirection,
-  VisibleRange
-} from './types/index.js'
+  VirtualScrollState,
+  VirtualScrollEvents
+} from './shared/types'
 
-// 常量
-export {
-  DEFAULT_ITEM_HEIGHT,
-  DEFAULT_OVERSCAN,
-  SCROLL_DEBOUNCE_TIME
-} from './constants/index.js'
+// 导出版本信息
+export const version = '0.0.1'
 
-// 版本信息
-export const VERSION = '0.0.1' 
+// 导出包信息
+export const packageInfo = {
+  name: 'aurora-virtual-scrolling',
+  version: '0.0.1',
+  description: '高性能虚拟滚动库 - 支持大数据量列表渲染优化'
+} 

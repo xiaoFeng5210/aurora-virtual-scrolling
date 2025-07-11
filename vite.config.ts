@@ -20,9 +20,16 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, 'package/index.ts'),
+      entry: {
+        index: resolve(__dirname, 'package/index.ts'),
+        react: resolve(__dirname, 'package/react-virtual-scrolling/index.ts'),
+        vue: resolve(__dirname, 'package/vue-virtual-scrolling/index.ts')
+      },
       name: 'AuroraVirtualScrolling',
-      fileName: (format) => `index.${format === 'es' ? 'js' : format === 'cjs' ? 'cjs' : 'umd.js'}`,
+      fileName: (format, entryName) => {
+        const extension = format === 'es' ? 'js' : format === 'cjs' ? 'cjs' : 'umd.js'
+        return entryName === 'index' ? `index.${extension}` : `${entryName}/index.${extension}`
+      },
       formats: ['es', 'cjs', 'umd']
     },
     outDir: 'dist',
