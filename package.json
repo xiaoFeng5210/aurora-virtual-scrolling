@@ -17,11 +17,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown",
-    "dev": "tsdown --watch",
+    "build": "vite build",
+    "dev": "vite build --watch",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run clean && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preview": "vite preview"
   },
   "keywords": [
     "virtual-scroll",
@@ -34,8 +35,13 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "tsdown": "^0.12.6",
-    "typescript": "^5.7.2"
+    "@types/node": "^24.0.13",
+    "@vitejs/plugin-react": "^4.6.0",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "terser": "^5.43.1",
+    "typescript": "^5.7.2",
+    "vite": "^7.0.4",
+    "vite-plugin-dts": "^4.5.4"
   },
   "engines": {
     "node": ">=18"

@@ -24,10 +24,11 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/**/*"
+    "package/**/*"
   ],
   "exclude": [
     "node_modules",
+    "lib",
     "dist",
     "**/*.test.ts",
     "**/*.spec.ts"
