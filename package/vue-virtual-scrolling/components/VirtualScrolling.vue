@@ -1,5 +1,5 @@
 <template>
-  <div class="virtual-scrolling">
+  <div class="virtual-scrolling" :style="{ height: containerHeight + 'px' }">
     <!-- 虚拟滚动容器 -->
     <div class="virtual-scrolling-container">
       <!-- 这里将来放置虚拟滚动的实现 -->
@@ -9,18 +9,12 @@
 </template>
 
 <script setup lang="ts">
-import { withDefaults, defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 
 // 定义组件 props 类型
 export interface VirtualScrollingProps {
-  // 数据源
-  data?: any[]
-  // 每项高度
-  itemHeight?: number
-  // 容器高度
-  containerHeight?: number
-  // 缓冲区大小
-  bufferSize?: number
+  containerHeight: number
+  data: any[]
 }
 
 // 定义组件 emits
@@ -31,13 +25,7 @@ export interface VirtualScrollingEmits {
   update: [data: any[]]
 }
 
-// 定义 props
-const props = withDefaults(defineProps<VirtualScrollingProps>(), {
-  data: () => [],
-  itemHeight: 50,
-  containerHeight: 300,
-  bufferSize: 5
-})
+const { data = [], containerHeight = 200 } = defineProps<VirtualScrollingProps>()
 
 // 定义 emits
 const emit = defineEmits<VirtualScrollingEmits>()
@@ -54,6 +42,5 @@ const emit = defineEmits<VirtualScrollingEmits>()
 .virtual-scrolling-container {
   position: relative;
   overflow-y: auto;
-  height: 100%;
 }
 </style> 

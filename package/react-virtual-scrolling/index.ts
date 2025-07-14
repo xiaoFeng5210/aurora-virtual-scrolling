@@ -5,6 +5,3 @@ export { VirtualScrolling }
 
 // 导出组件类型
 export type { VirtualScrollingProps } from './components/VirtualScrolling'
-
-// 默认导出
-export default VirtualScrolling 

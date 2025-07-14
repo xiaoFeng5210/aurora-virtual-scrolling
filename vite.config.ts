@@ -15,7 +15,7 @@ export default defineConfig({
       include: ['package/**/*'],
       outDir: 'dist',
       insertTypesEntry: true,
-      rollupTypes: true,
+      rollupTypes: false,
     })
   ],
   build: {
@@ -27,10 +27,10 @@ export default defineConfig({
       },
       name: 'AuroraVirtualScrolling',
       fileName: (format, entryName) => {
-        const extension = format === 'es' ? 'js' : format === 'cjs' ? 'cjs' : 'umd.js'
+        const extension = format === 'es' ? 'js' : 'cjs'
         return entryName === 'index' ? `index.${extension}` : `${entryName}/index.${extension}`
       },
-      formats: ['es', 'cjs', 'umd']
+      formats: ['es', 'cjs']
     },
     outDir: 'dist',
     rollupOptions: {

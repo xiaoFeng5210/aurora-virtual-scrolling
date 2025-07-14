@@ -22,7 +22,7 @@ const install = (app: any): void => {
 export { VirtualScrolling as AuroraVirtualScrolling }
 
 // 插件对象类型
-export interface VirtualScrollingPlugin {
+interface VirtualScrollingPlugin {
   install: (app: any) => void
   VirtualScrolling: typeof VirtualScrolling
 }
@@ -34,7 +34,7 @@ const VirtualScrollingPlugin: VirtualScrollingPlugin = {
 }
 
 // 支持 app.use() 的默认导出
-export default VirtualScrollingPlugin
+// export default VirtualScrollingPlugin
 
 // 声明全局 Vue 类型
 declare global {
