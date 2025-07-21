@@ -8,16 +8,6 @@ import { fileURLToPath, URL } from 'node:url'
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    react(),
-    dts({
-      include: ['package/**/*'],
-      outDir: 'dist',
-      insertTypesEntry: true,
-      rollupTypes: false,
-    })
-  ],
   build: {
     lib: {
       entry: {
@@ -47,6 +37,16 @@ export default defineConfig({
     minify: 'terser',
     target: 'es2020'
   },
+  plugins: [
+    vue(),
+    react(),
+    dts({
+      include: ['package/**/*'],
+      outDir: 'dist',
+      insertTypesEntry: true,
+      rollupTypes: false,
+    })
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'package')

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
+
 // 定义组件 props 类型
 export interface VirtualScrollingProps {
   containerHeight?: number
@@ -13,33 +15,48 @@ export interface VirtualScrollingEmits {
   update: [data: any[]]
 }
 
-const { data = [], containerHeight = 200 } = defineProps<VirtualScrollingProps>()
-defineSlots<{
-  item: (props: { item: any, index: number }) => any
-}>
-// 组件逻辑将在这里实现
+
+const { data = [], containerHeight = 200 } = defineProps<VirtualScrollingProps>();
+const virtualScrollValue = ref(0)
+const computedTransformY = computed(() => {
+  return `translateY(-${virtualScrollValue.value}px)`
+})
+
+const containerHeightStyle = computed(() => {
+  return containerHeight + 'px'
+})
+
+const listenWheel = (e: WheelEvent) => {
+  e.preventDefault()
+  const deltaY = e.deltaY
+  if (Math.abs(deltaY) !== 0) {
+    virtualScrollValue.value += deltaY
+  }
+  console.log(virtualScrollValue.value)
+}
+
+onMounted(() => {
+  const rendersWrapper = document.getElementById('renders_wrapper')
+  rendersWrapper?.addEventListener('wheel', listenWheel, { passive: false })
+})
 </script>
 
 <template>
-  <div class="virtual-scrolling" :style="{ height: containerHeight + 'px' }">
-    <!-- 虚拟滚动容器 -->
-    <div class="virtual-scrolling-container">
+  <div class="virtual-scrolling-window" :style="{ height: containerHeightStyle, overflow: 'hidden' }">   <!-- 虚拟滚动容器 -->
+    <div class="renders_wrapper" id="renders_wrapper" :style="{ transform: computedTransformY }">
       <!-- 这里将来放置虚拟滚动的实现 -->
-      <div v-for="(item, index) in data" :key="index">
-        <slot :name="`item-${index}`" :detail="item" :index="index"></slot>
-      </div>
+      <template v-for="(item, index) in data" :key="index">
+        <slot name="item" :detail="item" :index="index"></slot>
+      </template>
     </div>
   </div>
 </template>
 
 <style scoped>
-.virtual-scrolling {
-  position: relative;
-  overflow: hidden;
+.virtual-scrolling-window {
 }
 
-.virtual-scrolling-container {
-  position: relative;
-  overflow-y: auto;
+.renders_wrapper {
+
 }
 </style> 
